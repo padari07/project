@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+    <title>Cafe, in. :: 가맹안내</title>
+
+    <style>
+        *{font-family: "나눔스퀘어 BOLD","맑은 고딕",Arial, Helvetica, sans-serif; line-height: 150%;}
+        header {margin-top: 12px;}
+        body{width:1680px; margin : 0 auto; font-size: 14px;}
+        section {display: flex;}
+        article{flex : 80; margin-top: 0px; margin-right: 30px;}
+        aside{flex : 20; margin-top: 15px;}
+
+        ul {list-style-type: none;}
+        a {text-decoration: none;}
+
+        nav ul {text-align: center; border-top: 1px solid gainsboro;
+        border-bottom: 1px solid gainsboro; padding-left: 90px; padding-right: 90px;
+        padding-top:15px; padding-bottom: 15px;}
+        
+        nav {background-color: rgb(70, 70, 70);}
+        nav ul li {display: inline; padding: 19px 105px; letter-spacing: 3px; color:whitesmoke; font-size: 150%;}
+        nav ul li a {color: whitesmoke; 
+        font-family: "나눔스퀘어", "나눔바른고딕", "맑은 고딕", Arial, Helvetica, sans-serif;}
+        nav ul li:hover {background-color: rgb(201, 201, 201);}
+        nav ul li a:hover {color: rgb(50, 50, 50);}
+
+        body section article h4 {width: 1200px; font-family: "나눔스퀘어", "나눔바른고딕", "맑은 고딕", Arial, Helvetica, sans-serif;}
+        body section article strong {font-family: "나눔스퀘어", "나눔바른고딕", "맑은 고딕", Arial, Helvetica, sans-serif; font-size: 1.5em;}
+        body section article div2 img {padding-top:10px; margin-right: 5px;}
+        body section article h1 {font-family: "나눔스퀘어BOLD", "나눔바른고딕", "맑은 고딕", Arial, Helvetica, sans-serif; text-align: center;}
+        body section article h5 {font-family: "나눔스퀘어BOLD", "나눔바른고딕", "맑은 고딕", Arial, Helvetica, sans-serif; text-align: center;}
+        body section article h6 {font-family: "나눔스퀘어", "나눔바른고딕", "맑은 고딕", Arial, Helvetica, sans-serif; text-align: center;}
+
+        body section aside {font-family: "나눔스퀘어", "나눔바른고딕", "맑은 고딕", Arial, Helvetica, sans-serif; }
+        </style>
+
+        <script>
+           let data = [[1, "부산", "부산역점", "051-135-0125", "08:00 ~ 22:00", "./image/map1.jpg"],
+                    [2, "부산", "남포점", "051-240-0303", "08:00 ~ 24:00", "./image/map2.jpg"],
+                    [3, "부산", "센텀점", "051-603-2709", "09:00 ~ 23:00", "./image/map3.jpg"],
+                    [4, "부산", "동래점", "051-435-1787", "09:00 ~ 23:00", "./image/map4.jpg"],
+                    [5, "부산", "서면쥬디스점", "051-300-8901", "08:00 ~ 24:00", "./image/map5.jpg"],
+                    [6, "부산", "사상터미널점", "051-321-1013", "06:00 ~ 02:00", "./image/map6.jpg"]]
+
+           function tablePrint(){
+
+            let text = '';
+            text = `<table class="w3-table-all w3-hoverable"><tr class="w3-khaki"><th>구분</th><th>지역</th><th>매장명</th><th>전화번호</th><th>영업시간</th><th>위치</th></tr>`;
+            for(let i = 0; i<data.length; i++){
+              text+=`<tr><td>${data[i][0]}</td><td>${data[i][1]}</td><td>${data[i][2]}</td><td>${data[i][3]}</td>
+                <td>${data[i][4]}</td><td><img src=${data[i][5]} onclick="onClick(this)"></td></tr>`;
+            }  
+            text += `</table>`;
+              document.getElementById("mlist").innerHTML=text;
+             }
+
+           function fileUpload(){
+               let a = new Array();
+               let ctype =  parseInt(document.getElementById("ctype").value);
+               let cityname = document.getElementById("cityname").value;
+               let marketname = document.getElementById("marketname").value;
+               let tele = document.getElementById("tele").value;
+               let time = document.getElementById("time").value;
+               let place = "./image/" + document.getElementById("file").files[0].name;
+               a[0] = ctype
+               a[1] = cityname;
+               a[2] = marketname;
+               a[3] = tele;
+               a[4] = time;
+               a[5] = place;
+               data.push(a);
+               console.log(data);
+           }
+
+           function onClick(element) {
+	         document.getElementById("img01").src = element.src;
+	         document.getElementById("modal01").style.display = "block";
+            } 
+           
+           function login(){
+               let id = document.getElementById("id").value;
+               let pw = document.getElementById("pw").value;
+               if(id==="admin"){
+                   if(pw=="1234"){
+                    alert("로그인이 되었습니다.");
+                   } else {
+                       alert("비밀번호를 확인하세요");
+                   }
+               }else{
+                   alert("회원가입이 필요합니다.");
+               }
+           } 
+
+           function cal(){
+            a = prompt("계산할 수식을 입력하세요.");
+            result = eval(a);
+            alert(result);
+           }
+
+           function join() {
+           alert("회원가입 페이지로 이동합니다.")
+           }    
+    </script>
+
+</head>
+
+<body onload="tablePrint();">
+   <header>
+    <a href="./index.html"><img src="./image/title.png" alt="title" height=120 width="1680"></a>
+     </header>
+    
+   <nav>
+     <ul>
+       <li><a href="./brand.html">브랜드</a></li>
+       <li><a href="./market.html">가맹안내</a></li>
+       <li><a href="./menu.html">메뉴</a></li>
+       <li><a href="./subs.html">구독권</a></li>
+       <li><a href="#마이홈">마이홈</a></li>
+     </ul>
+    </nav>
+
+    <section>
+         <article class= "left">
+            <div id= "menubar" class="w3-panel w3-light-grey w3-leftbar">
+             <h4>가맹안내</h4>
+            </div>
+
+         <div id="modal01" class="w3-modal" onclick="this.style.display='none'">
+             <div class="w3-modal-content w3-animate-zoom">
+             <img id="img01" style="width: 50%;">
+          </div>
+         </div>
+
+         <div class="w3-container">
+          <h2 class = "w3-center">가맹점 등록 및 신청 양식</h2>
+          구분 : <input class="w3-input" type="text" name="" id="ctype"> <br>
+          지역 : <input class="w3-input" type="text" name="" id="cityname"> <br>
+          매장명 : <input class="w3-input" type="text" name="" id="marketname"> <br>
+          전화번호 : <input class="w3-input" type="text" name="" id="tele"> <br>
+          영업시간 : <input class="w3-input" type="text" name="" id="time"> <br>
+          위치 (지도 파일을 등록) : <input class="w3-input" type="file" name="" id="file"> <br>
+          <button class= "w3-button w3-black" onclick="fileUpload();"> 매장정보등록</button>
+          <button class= "w3-button w3-black" onclick="tablePrint();"> 매장정보업로드</button>
+         </div>
+
+         <div id="mtitle" class="w3-container">
+             <h2 class="w3-center">전국 매장 목록</h2><br>
+           <div id="mlist">
+  
+           </div>
+           </table>
+           </div><br>
+           <div class="w3-center">
+            <div class="w3-bar w3-border">
+              <a href="#" class="w3-bar-item w3-button">&laquo;</a>
+              <a href="#" class="w3-bar-item w3-button">1</a>
+              <a href="#" class="w3-bar-item w3-button">&raquo;</a>
+              </div>
+            <hr>
+  
+        </article>
+
+        <aside class="right">
+            <div id= login class="w3-card-4">
+                <div class="w3-container w3-light-grey">
+                  <h2>로그인</h2>
+                </div>
+                <form class="w3-container" action="./index.html"  method="GET">
+                  <p>      
+                  <label class="w3-text-dark-grey"><b>ID</b></label>
+                  <input class="w3-input w3-border w3-light-grey" name="username" type="text" id="id" placeholder="ID를 입력하세요."></p>
+                  <p>      
+                  <label class="w3-text-dark-grey"><b>PASSWORD</b></label>
+                  <input class="w3-input w3-border w3-light-grey" name="password" type="text" id="pw" placeholder="비밀번호를 입력하세요."></p>
+                  <p>
+                  <a><button onclick="login();" class="w3-btn w3-black">로그인</button></a>
+                  <button onclick="join();" class="w3-btn w3-light-grey">회원가입</button>
+                </form> 
+             </div>   
+
+             <p><button onclick="cal()" class="w3-button w3-block w3-black">계산기</button></p>
+
+             <div class="w3-sidebar w3-border w3-dark-grey w3-bar-block w3-card" style="width: 17.35%;right:1;top:62%;">
+                <h3 class="w3-bar-item">바로가기</h3>
+                <a href="./index.html#maintitle" class="w3-bar-item w3-button">메인세션</a>
+                <a href="./index.html#eventmid" class="w3-bar-item w3-button">진행 중인 이벤트</a>
+                <a href="./index.html#review1" class="w3-bar-item w3-button">후기</a>
+                <a href="./index.html#contact" class="w3-bar-item w3-button">CAFE, IN을 만나다.</a>
+              </div>
+        </aside>
+    </section>
+    <br><br>
+
+    <div id= "contact"></div>
+   <footer class="w3-dark-grey">
+	 <div class="w3-row">
+		<div class="w3-col s4  w3-container">
+			<h5>Contact Us</h5>
+			<ul>
+			  <li>TEL: 051-130-2021</li>
+			  <li>Email: <a href="mailto:cafein@naver.com" title="Email Us">cafein@naver.com</a></li>
+			  <li><a href="www.bsgangseo.go.kr" title="address">부산광역시 강서구 명지로 100/</a></li>
+			</ul>
+			
+		</div>
+		<div class="w3-col s4  w3-container">
+			<h5> Follow Us</h5>
+			<a href="https://www.facebook.com"<i class="fab fa-facebook"></i></a>
+			<a href="https://www.instagram.com"<i class="fab fa-instagram"></i></a>
+			<a href="https://section.blog.naver.com/BlogHome.naver?directoryNo=0&currentPage=1&groupId=0"<i class="fas fa-blog"></i></a>
+      </ul>
+			<br />
+      <a href="https://padari07.github.io/ventiz/" title="github Us">https://padari07.github.io/ventiz/</a><br>
+			Copyright (c) 2021 최성훈<br>
+		</div>
+
+		<div class="w3-col s4 w3-container" >
+			<h5>add info</h5>
+			  온라인 주문 가능.<br> 각 메뉴를 클릭하세요.<br>
+        </div>
+        </footer>			
+</body>
+</html>

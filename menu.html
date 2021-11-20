@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cafe, in. :: 메뉴</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+
+    <style>
+        *{font-family: "나눔스퀘어 BOLD","맑은 고딕",Arial, Helvetica, sans-serif; line-height: 150%;}
+        header {margin-top: 12px;}
+        body{width:1680px; margin : 0 auto; font-size: 14px;}
+        section {display: flex;}
+        article{flex : 80; margin-top: 0px; margin-right: 30px;}
+        aside{flex : 20; margin-top: 15px;}
+
+        ul {list-style-type: none;}
+        a {text-decoration: none;}
+
+        nav ul {text-align: center; border-top: 1px solid gainsboro;
+        border-bottom: 1px solid gainsboro; padding-left: 90px; padding-right: 90px;
+        padding-top:15px; padding-bottom: 15px;}
+        
+        nav {background-color: rgb(70, 70, 70);}
+        nav ul li {display: inline; padding: 19px 105px; letter-spacing: 3px; color:whitesmoke; font-size: 150%;}
+        nav ul li a {color: whitesmoke; 
+        font-family: "나눔스퀘어", "나눔바른고딕", "맑은 고딕", Arial, Helvetica, sans-serif;}
+        nav ul li:hover {background-color: rgb(201, 201, 201);}
+        nav ul li a:hover {color: rgb(50, 50, 50);}
+
+        body section article h4 {width: 1200px; font-family: "나눔스퀘어", "나눔바른고딕", "맑은 고딕", Arial, Helvetica, sans-serif;}
+        body section article strong {font-family: "나눔스퀘어", "나눔바른고딕", "맑은 고딕", Arial, Helvetica, sans-serif; font-size: 1.5em;}
+        body section article div2 img {padding-top:10px; margin-right: 5px;}
+        body section article h1 {font-family: "나눔스퀘어BOLD", "나눔바른고딕", "맑은 고딕", Arial, Helvetica, sans-serif; text-align: center;}
+        body section article h5 {font-family: "나눔스퀘어BOLD", "나눔바른고딕", "맑은 고딕", Arial, Helvetica, sans-serif; text-align: center;}
+        body section article h6 {font-family: "나눔스퀘어", "나눔바른고딕", "맑은 고딕", Arial, Helvetica, sans-serif; text-align: center;}
+
+        body section aside {font-family: "나눔스퀘어", "나눔바른고딕", "맑은 고딕", Arial, Helvetica, sans-serif; }
+        </style>
+
+        <script>
+           let data = [["베이식케이크", "./image/basic_cake.jpg", 2500],
+                    ["초코케이크", "./image/choco_cake.jpg", 3500],
+                    ["딸기케이크", "./image/berry_cake.jpg", 3500],
+                    ["티라미수크림케이크", "./image/misu_cake.jpg", 3300],
+                    ["딥초코오레오케이크", "./image/oreo_cake.jpg", 6500]]
+
+           function tablePrint(){
+
+            let text = '';
+            text = `<table class="w3-table-all w3-hoverable"><tr class="w3-khaki"><th>가맹점지역</th><th>제품사진</th><th>가격</th></tr>`;
+            for(let i = 0; i<data.length; i++){
+              text+=`<tr><td>${data[i][0]}</td><td><img src=${data[i][1]} onclick="onClick(this)"></td><td>${data[i][2]}</td></tr>`;
+            }  
+            text += `</table>`;
+              document.getElementById("productList").innerHTML=text;
+             }
+
+           function fileUpload(){
+               let a = new Array();
+               let coffeename = document.getElementById("coffeename").value;
+               let file = "./image/" + document.getElementById("file").files[0].name;
+               let price = parseInt(document.getElementById("price").value);
+               a[0] = coffeename;
+               a[1] = file;
+               a[2] = price;
+               data.push(a);
+               console.log(data);
+           }
+
+           function onClick(element) {
+	         document.getElementById("img01").src = element.src;
+	         document.getElementById("modal01").style.display = "block";
+            } 
+           
+           function login(){
+               let id = document.getElementById("id").value;
+               let pw = document.getElementById("pw").value;
+               if(id==="admin"){
+                   if(pw=="1234"){
+                    alert("로그인이 되었습니다.");
+                   } else {
+                       alert("비밀번호를 확인하세요");
+                   }
+               }else{
+                   alert("회원가입이 필요합니다.");
+               }
+           } 
+
+           function cal(){
+            a = prompt("계산할 수식을 입력하세요.");
+            result = eval(a);
+            alert(result);
+           }
+
+           function join() {
+           alert("회원가입 페이지로 이동합니다.")
+           }    
+    </script>
+
+</head>
+
+<body>
+<body onload="tablePrint();">
+   <header>
+    <a href="./index.html"><img src="./image/title.png" alt="title" height=120 width="1680"></a>
+     </header>
+    
+   <nav>
+     <ul>
+       <li><a href="./brand.html">브랜드</a></li>
+       <li><a href="./market.html">가맹안내</a></li>
+       <li><a href="./menu.html">메뉴</a></li>
+       <li><a href="./subs.html">구독권</a></li>
+       <li><a href="#마이홈">마이홈</a></li>
+     </ul>
+    </nav>
+
+    <section>
+        <article class= "left">
+          <div id= "menubar" class="w3-panel w3-light-grey w3-leftbar">
+             <h4>판매메뉴</h4>
+             </div>
+
+            <div id = "newproduct">
+              <h1 style="text-align: center;">신메뉴소식</h1>
+              <a href="./image/newproduct.png" target="_blank" title="신메뉴"><img src="./image/newproduct.png" alt="newproduct" style="width:100%"></a><br><hr>
+            </div>
+
+            <div class="w3-container w3-khaki">
+              <h1>COFFEE</h1>
+            </div>
+      
+          <div class="w3-row-padding w3-margin-top"> 
+            <div class="w3-third">
+              <div class="w3-card">              
+                  <img src="./image/ame.jpg" alt="ame" style="width:100%">
+                  <div class="w3-container">
+                    <h5>아메리카노 (HOT / ICE)</h5>
+                    <p><h6>일반: 2500원 / NEW원두: 3300원 / 디카페인: 3500원<h6></p>
+      
+                  </div>
+                </div>
+              </div>
+            
+              <div class="w3-third">
+                <div class="w3-card">
+                  <img src="./image/latte.jpg" alt="latte" style="width:100%">
+                  <div class="w3-container">
+                    <h5>카페 라떼 (HOT / ICE)</h5>
+                    <p><h6>일반: 3000원 / 디카페인: 4200원<h6></p>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="w3-third">
+                <div class="w3-card">
+                  <img src="./image/caramel.jpg" alt="caramel" style="width:100%">
+                  <div class="w3-container">
+                    <h5>카라멜 마끼아토 (HOT / ICE)</h5>
+                    <p><h6>일반: 3800원 / 디카페인: 5000원<h6></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="w3-row-padding w3-margin-top">
+              <div class="w3-third">
+                <div class="w3-card">
+                  <img src="./image/vanilla.jpg" alt="vanilla" style="width:100%">
+                  <div class="w3-container">
+                    <h5>바닐라라떼 (HOT / ICE)</h5>
+                    <p><h6>일반: 3500원 / 디카페인: 4700원<h6></p>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="w3-third">
+                <div class="w3-card">
+                  <img src="./image/mocha.jpg" alt="mocha" style="width:100%">
+                  <div class="w3-container">
+                    <h5>카페모카 (HOT / ICE)</h5>
+                    <p><h6>일반: 3800원 / 디카페인: 5000원<h6></p>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="w3-third">
+                <div class="w3-card">
+                  <img src="./image/salt.jpg" alt="salt" style="width:97.5%">
+                  <div class="w3-container">
+                    <h5>오션소금라떼 (HOT / ICE)</h5>
+                    <p><h6>일반: 4500원 / 디카페인: 5700원<h6></p>
+                  </div>
+                </div>
+              </div>
+            </div> 
+            <br><br>
+      
+            <div class="w3-container w3-khaki">
+              <h1>BEVERAGE</h1>
+            </div>
+      
+          <div id="bever" class="w3-row-padding w3-margin-top"> 
+            <div class="w3-third">
+              <div class="w3-card">              
+                  <img src="./image/choco.jpg" alt="choco" style="width:100%">
+                  <div class="w3-container">
+                    <h5>초코라떼 (HOT / ICE)</h5>
+                    <p><h6>3800원<h6></p>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="w3-third">
+                <div class="w3-card">
+                  <img src="./image/plane.jpg" alt="plane" style="width:100%">
+                  <div class="w3-container">
+                    <h5>플레인라떼 (HOT / ICE)</h5>
+                    <p><h6>4200원<h6></p>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="w3-third">
+                <div class="w3-card">
+                  <img src="./image/special.jpg" alt="special" style="width:100%">
+                  <div class="w3-container">
+                    <h5>스페셜 에이드 (ICE ONLY)</h5>
+                    <p><h6>4800원<h6></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="w3-row-padding w3-margin-top">
+              <div class="w3-third">
+                <div class="w3-card">
+                  <img src="./image/yogurt.jpg" alt="yogurt" style="width:100%">
+                  <div class="w3-container">
+                    <h5>요거트 스무디 (ICE ONLY)</h5>
+                    <p><h6>4500원<h6></p>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="w3-third">
+                <div class="w3-card">
+                  <img src="./image/beans.jpg" alt="beans" style="width:100%">
+                  <div class="w3-container">
+                    <h5>팥단지 (HOT / ICE)</h5>
+                    <p><h6>4800원<h6></p>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="w3-third">
+                <div class="w3-card">
+                  <img src="./image/peach.jpg" alt="peach" style="width:100%">
+                  <div class="w3-container">
+                    <h5>복숭아 아이스티 (ICE ONLY)</h5>
+                    <p><h6>3300원<h6></p>
+                  </div>
+                </div>
+              </div>
+            </div> 
+            <br><br>         
+
+         <div id="demo" class="w3-container">
+             <h2 class="w3-center"> CAKE & DESSERT </h2>
+             <div id="productList">
+
+         </div>
+         </table>
+         </div>
+          <hr>
+
+         <div id="modal01" class="w3-modal" onclick="this.style.display='none'">
+             <div class="w3-modal-content w3-animate-zoom">
+             <img id="img01" style="width:100%;">
+          </div>
+         </div>
+
+         <div class="w3-container">
+          <h2>케익 및 디저트 상품 등록</h2>
+          메뉴이름 : <input class="w3-input" type="text" name="" id="coffeename"> <br>
+          사진 : <input class="w3-input" type="file" name="" id="file"> <br>
+          가격 : <input class="w3-input" type="text" name="" id="price"> <br>
+          <button class= "w3-button w3-black" onclick="fileUpload();"> 상품등록</button>
+          <button class= "w3-button w3-black" onclick="tablePrint();"> 메뉴업로드</button>
+         </div>
+        </article>
+
+        <aside class="right">
+            <div id= login class="w3-card-4">
+                <div class="w3-container w3-light-grey">
+                  <h2>로그인</h2>
+                </div>
+                <form class="w3-container" action="./index.html"  method="GET">
+                  <p>      
+                  <label class="w3-text-dark-grey"><b>ID</b></label>
+                  <input class="w3-input w3-border w3-light-grey" name="username" type="text" id="id" placeholder="ID를 입력하세요."></p>
+                  <p>      
+                  <label class="w3-text-dark-grey"><b>PASSWORD</b></label>
+                  <input class="w3-input w3-border w3-light-grey" name="password" type="text" id="pw" placeholder="비밀번호를 입력하세요."></p>
+                  <p>
+                  <a><button onclick="login();" class="w3-btn w3-black">로그인</button></a>
+                  <button onclick="join();" class="w3-btn w3-light-grey">회원가입</button>
+                </form> 
+             </div>   
+
+             <p><button onclick="cal()" class="w3-button w3-block w3-black">계산기</button></p>
+
+             <div class="w3-sidebar w3-border w3-dark-grey w3-bar-block w3-card" style="width: 17.35%;right:1;top:62%;">
+                <h3 class="w3-bar-item">바로가기</h3>
+                <a href="./index.html#maintitle" class="w3-bar-item w3-button">메인세션</a>
+                <a href="./index.html#eventmid" class="w3-bar-item w3-button">진행 중인 이벤트</a>
+                <a href="./index.html#review1" class="w3-bar-item w3-button">후기</a>
+                <a href="./index.html#contact" class="w3-bar-item w3-button">CAFE, IN을 만나다.</a>
+                </div>
+        </aside>
+    </section>
+    <br><br>
+
+    <div id= "contact"></div>
+   <footer class="w3-dark-grey">
+	 <div class="w3-row">
+		<div class="w3-col s4  w3-container">
+			<h5>Contact Us</h5>
+			<ul>
+			  <li>TEL: 051-130-2021</li>
+			  <li>Email: <a href="mailto:cafein@naver.com" title="Email Us">cafein@naver.com</a></li>
+			  <li><a href="www.bsgangseo.go.kr" title="address">부산광역시 강서구 명지로 100/</a></li>
+			</ul>
+			
+		</div>
+		<div class="w3-col s4  w3-container">
+			<h5> Follow Us</h5>
+			<a href="https://www.facebook.com"<i class="fab fa-facebook"></i></a>
+			<a href="https://www.instagram.com"<i class="fab fa-instagram"></i></a>
+			<a href="https://section.blog.naver.com/BlogHome.naver?directoryNo=0&currentPage=1&groupId=0"<i class="fas fa-blog"></i></a>
+      </ul>
+			<br />
+      <a href="https://padari07.github.io/ventiz/" title="github Us">https://padari07.github.io/ventiz/</a><br>
+			Copyright (c) 2021 최성훈<br>
+		</div>
+
+		<div class="w3-col s4 w3-container" >
+			<h5>add info</h5>
+			  온라인 주문 가능.<br> 각 메뉴를 클릭하세요.<br>
+        </div>
+        </footer>			
+</body>
+</html>
